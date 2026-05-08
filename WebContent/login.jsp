@@ -27,7 +27,7 @@
 				name="accountOrEmail" id="accountOrEmail" /> <br /> <label
 				for="password">パスワード</label> <input name="password" type="password"
 				id="password" /> <br /> <input type="submit" value="ログイン" /> <br />
-			<a href="top.jsp">戻る</a>
+			<a href="./">戻る</a>
 		</form>
 
 		<div class="copyright">近田　悠人</div>
