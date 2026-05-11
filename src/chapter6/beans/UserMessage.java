@@ -5,14 +5,14 @@ import java.util.Date;
 
 public class UserMessage implements Serializable {
 
-    private int id;
-    private String account;
-    private String name;
-    private int userId;
-    private String text;
-    private Date createdDate;
+	private int id;
+	private String account;
+	private String name;
+	private int userId;
+	private String text;
+	private Date createdDate;
 
-    public int getId( ) {
+	public int getId() {
 		return id;
 	}
 
@@ -20,7 +20,7 @@ public class UserMessage implements Serializable {
 		this.id = id;
 	}
 
-	public String getAccount( ) {
+	public String getAccount() {
 		return account;
 	}
 
@@ -28,7 +28,7 @@ public class UserMessage implements Serializable {
 		this.account = account;
 	}
 
-	public String getName( ) {
+	public String getName() {
 		return name;
 	}
 
@@ -36,7 +36,7 @@ public class UserMessage implements Serializable {
 		this.name = name;
 	}
 
-	public int getUserId( ) {
+	public int getUserId() {
 		return userId;
 	}
 
@@ -44,14 +44,15 @@ public class UserMessage implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getText( ) {
+	public String getText() {
 		return text;
 	}
 
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Date getCreatedDate( ) {
+
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
@@ -59,5 +60,5 @@ public class UserMessage implements Serializable {
 		this.createdDate = createdDate;
 	}
 
-    // getter/setterは省略されているので、自分で記述しましょう。
+	// getter/setterは省略されているので、自分で記述しましょう。
 }

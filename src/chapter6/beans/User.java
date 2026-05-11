@@ -14,7 +14,7 @@ public class User implements Serializable {
 	private Date createdDate;
 	private Date updatedDate;
 
-	public int getId( ) {
+	public int getId() {
 		return id;
 	}
 
@@ -22,7 +22,7 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getAccount( ) {
+	public String getAccount() {
 		return account;
 	}
 
@@ -30,7 +30,7 @@ public class User implements Serializable {
 		this.account = account;
 	}
 
-	public String getName( ) {
+	public String getName() {
 		return name;
 	}
 
@@ -38,7 +38,7 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public String getEmail( ) {
+	public String getEmail() {
 		return email;
 	}
 
@@ -46,7 +46,7 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getPassword( ) {
+	public String getPassword() {
 		return password;
 	}
 
@@ -54,7 +54,7 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getDescription( ) {
+	public String getDescription() {
 		return description;
 	}
 
@@ -62,7 +62,7 @@ public class User implements Serializable {
 		this.description = description;
 	}
 
-	public Date getCreatedDate( ) {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
@@ -70,7 +70,7 @@ public class User implements Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public Date getUpdatedDate( ) {
+	public Date getUpdatedDate() {
 		return updatedDate;
 	}
 
