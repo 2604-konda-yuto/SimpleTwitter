@@ -46,13 +46,13 @@
 				<c:if test="${ isShowMessageForm }">
 					<form action="message" method="post">
 						いま、どうしてる？<br />
-						<textarea name="text" cols="100" rows="5" class="tweet-box"></textarea>
+						<textarea name="text" cols="100" rows="5" class="tweet-box">
+						</textarea>
 						<br />
 						<input type="submit" value="つぶやく">（140文字まで）
 					</form>
 				</c:if>
 			</div>
-			<div class="copyright">近田　悠人</div>
 		</div>
 		<div class="messages">
     		<c:forEach items="${messages}" var="message">
@@ -65,10 +65,22 @@
                 		</span>
                 		<span class="name"><c:out value="${message.name}" /></span>
             		</div>
-            		<div class="text"><c:out value="${message.text}" /></div>
+            		<div class="text"><pre><c:out value="${message.text}" /></pre></div>
             		<div class="date"><fmt:formatDate value="${message.createdDate}" pattern="yyyy/MM/dd HH:mm:ss" /></div>
+            		<c:if test="${ loginUser.id == message.userId }">
+            			<form action="deleteMessage" method="post">
+            				<input type="hidden" name="deleteText" value="${message.text}">
+            				<input type="hidden" name="deleteId" value="${message.id}">
+							<input type="submit" value="削除">
+            			</form>
+            			<form action="edit" method="get">
+            				<input type="hidden" name="editId" value="${message.id}">
+            				<input type="submit" value="編集">
+            			</form>
+            		</c:if>
         		</div>
     		</c:forEach>
+    		<div class="copyright">近田　悠人</div>
 		</div>
 	</body>
 </html>
