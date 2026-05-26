@@ -45,7 +45,7 @@ public class EditServlet extends HttpServlet {
 
 		String getId = request.getParameter("editId");
 
-		if (!getId.matches("^[0-9]+$") || StringUtils.isBlank(getId)) {
+		if (StringUtils.isBlank(getId) || !getId.matches("^[0-9]*$")) {
 			errorMessages.add("不正なパラメータが入力されました");
 			session.setAttribute("errorMessages", errorMessages);
 			response.sendRedirect("./");
