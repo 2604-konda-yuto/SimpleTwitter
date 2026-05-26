@@ -114,7 +114,7 @@ public class MessageDao {
 
 			List<Message> message = editUserMessages(rs);
 
-			if(message.isEmpty()) {
+			if (message.isEmpty()) {
 				return null;
 			} else {
 				return message.get(0);
