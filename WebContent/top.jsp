@@ -24,6 +24,12 @@
 					<a href="logout">ログアウト</a>
 				</c:if>
 			</div>
+			<form action="./" method="get">
+				日付
+				<input type="date" name="start" value="${start}">～
+				<input type="date" name="end" value="${end}">
+				<input type="submit" value="絞込">
+			</form>
 			<c:if test="${ not empty loginUser }">
 				<div class="profile">
 					<div class="name"><h2><c:out value="${loginUser.name}" /></h2></div>
@@ -77,9 +83,33 @@
             				<input type="submit" value="編集">
             			</form>
             		</c:if>
+            		<c:if test="${ isShowMessageForm }">
+            			<div class="comments">
+            				<form action="comment" method="post">
+            					<br />返信<br />
+            					<a href="./?user_id=<c:out value="${comment.userId}"/> ">
+            						<c:out value="${comment.account}" />
+            					</a>
+            					<textarea name="commentText" cols="100" rows="5" class="tweet-box">
+            					</textarea>
+            					<br/>
+            					<input type="submit" value="返信">
+            					<input type="hidden" name="messageId" value="${message.id}">
+            				</form>
+            				<form action="comment" method="get">
+            					<c:forEach items="${comments}" var="comment">
+            					<c:if test="${comment.messageId == message.id}">
+            						<span class="name"><c:out value="${message.name}" /></span>
+            						<div class="text"><pre><c:out value="${comment.text}" /></pre></div>
+            						<div class="date"><fmt:formatDate value="${comment.createdDate}" pattern="yyyy/MM/dd HH:mm:ss" /></div>
+            						</c:if>
+            					</c:forEach>
+            				</form>
+        				</div>
+        			</c:if>
         		</div>
     		</c:forEach>
-    		<div class="copyright">近田　悠人</div>
+    	<div class="copyright">近田　悠人</div>
 		</div>
 	</body>
 </html>

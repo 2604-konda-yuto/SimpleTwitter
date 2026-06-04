@@ -32,6 +32,7 @@
 
 			<input type="submit" value="ログイン" /> <br />
 			<a href="./">戻る</a>
+			<c:remove var="errorMessages" scope="session" />
 		</form>
 
 		<div class="copyright">近田　悠人</div>
