@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/setting","/edit"})
+@WebFilter(urlPatterns = {"/setting", "/edit"})
 public class LoginFilter implements Filter {
 
 	@Override
@@ -32,7 +32,6 @@ public class LoginFilter implements Filter {
 		if(httpSession.getAttribute("loginUser") != null) {
 			chain.doFilter(request, response); // サーブレットを実行
 		} else {
-			httpSession = httpRequest.getSession(true);
 			List<String> errorMessages = new ArrayList<>();
 			errorMessages.add("ログインしてください");
 			httpSession.setAttribute("errorMessages", errorMessages);

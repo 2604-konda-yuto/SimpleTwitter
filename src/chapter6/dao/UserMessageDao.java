@@ -32,8 +32,7 @@ public class UserMessageDao {
 
 	}
 
-	public List<UserMessage> select(Connection connection, Integer id, int num, String defaultStart,
-			String defaultEnd) {
+	public List<UserMessage> select(Connection connection, String startDate, String endDate, Integer id, int num) {
 
 		log.info(new Object() {
 		}.getClass().getEnclosingClass().getName() +
@@ -41,6 +40,7 @@ public class UserMessageDao {
 				}.getClass().getEnclosingMethod().getName());
 
 		PreparedStatement ps = null;
+
 		try {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT ");
@@ -49,27 +49,22 @@ public class UserMessageDao {
 			sql.append("    messages.user_id as user_id, ");
 			sql.append("    users.account as account, ");
 			sql.append("    users.name as name, ");
-			sql.append("    messages.created_date as created_date ");
+			sql.append(" messages.created_date as created_date ");
 			sql.append("FROM messages ");
 			sql.append("INNER JOIN users ");
 			sql.append("ON messages.user_id = users.id ");
+			sql.append(" WHERE messages.created_date BETWEEN ? AND ? ");
 			if (id != null) {
-				sql.append(" WHERE user_id = ? AND ");
-			} else {
-				sql.append(" WHERE ");
+				sql.append(" AND user_id = ? ");
 			}
-			sql.append(" messages.created_date BETWEEN ? AND ? ");
 			sql.append("ORDER BY created_date DESC limit " + num);
 
 			ps = connection.prepareStatement(sql.toString());
 
+			ps.setString(1, startDate);
+			ps.setString(2, endDate);
 			if (id != null) {
-				ps.setInt(1, id);
-				ps.setString(2, defaultStart);
-				ps.setString(3, defaultEnd);
-			} else {
-				ps.setString(1, defaultStart);
-				ps.setString(2, defaultEnd);
+				ps.setInt(3, id);
 			}
 
 			ResultSet rs = ps.executeQuery();

@@ -83,33 +83,32 @@
             				<input type="submit" value="編集">
             			</form>
             		</c:if>
-            		<c:if test="${ isShowMessageForm }">
-            			<div class="comments">
+            		<div class="comments">
+            			<c:if test="${ isShowMessageForm }">
             				<form action="comment" method="post">
             					<br />返信<br />
             					<a href="./?user_id=<c:out value="${comment.userId}"/> ">
             						<c:out value="${comment.account}" />
             					</a>
-            					<textarea name="commentText" cols="100" rows="5" class="tweet-box">
-            					</textarea>
+            					<textarea name="commentText" cols="100" rows="5" class="tweet-box"></textarea>
             					<br/>
             					<input type="submit" value="返信">
             					<input type="hidden" name="messageId" value="${message.id}">
             				</form>
-            				<form action="comment" method="get">
-            					<c:forEach items="${comments}" var="comment">
+            			</c:if>
+            			<form action="comment" method="get">
+            				<c:forEach items="${comments}" var="comment">
             					<c:if test="${comment.messageId == message.id}">
-            						<span class="name"><c:out value="${message.name}" /></span>
+            						<div class="name"><c:out value="${comment.name}" /></div>
             						<div class="text"><pre><c:out value="${comment.text}" /></pre></div>
             						<div class="date"><fmt:formatDate value="${comment.createdDate}" pattern="yyyy/MM/dd HH:mm:ss" /></div>
-            						</c:if>
-            					</c:forEach>
-            				</form>
-        				</div>
-        			</c:if>
+            					</c:if>
+            				</c:forEach>
+            			</form>
+        			</div>
         		</div>
     		</c:forEach>
-    	<div class="copyright">近田　悠人</div>
+    		<div class="copyright">近田　悠人</div>
 		</div>
 	</body>
 </html>

@@ -85,6 +85,8 @@ public class MessageService {
 		Connection connection = null;
 		try {
 			connection = getConnection();
+			String startDate = "";
+			String endDate = "";
 			/*
 			* idをnullで初期化
 			* ServletからuserIdの値が渡ってきていたら
@@ -95,18 +97,22 @@ public class MessageService {
 				id = Integer.parseInt(userId);
 			}
 			if (!StringUtils.isBlank(start)) {
-				defaultStart = start + " 00:00:00";
+				startDate = start + " 00:00:00";
+			} else {
+				startDate = startDate + defaultStart;
 			}
 			if (!StringUtils.isBlank(end)) {
-				defaultEnd = end + " 23:59:59";
+				endDate = end + " 23:59:59";
+			} else {
+				endDate = endDate + defaultEnd;
+
 			}
 			/*
 			* messageDao.selectに引数としてInteger型のidを追加
 			* idがnullだったら全件取得する
 			* idがnull以外だったら、その値に対応するユーザーIDの投稿を取得する
 			*/
-			List<UserMessage> messages = new UserMessageDao().select(connection, id, LIMIT_NUM, defaultStart,
-					defaultEnd);
+			List<UserMessage> messages = new UserMessageDao().select(connection, startDate, endDate, id, LIMIT_NUM);
 			commit(connection);
 
 			return messages;
