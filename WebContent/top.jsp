@@ -41,7 +41,7 @@
 				<div class="errorMessages">
 					<ul>
 						<c:forEach items="${errorMessages}" var="errorMessage">
-							<li><c:out value="${errorMessage}" />
+							<li><c:out value="${errorMessage}" /></li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -87,16 +87,13 @@
             			<c:if test="${ isShowMessageForm }">
             				<form action="comment" method="post">
             					<br />返信<br />
-            					<a href="./?user_id=<c:out value="${comment.userId}"/> ">
-            						<c:out value="${comment.account}" />
-            					</a>
             					<textarea name="commentText" cols="100" rows="5" class="tweet-box"></textarea>
             					<br/>
             					<input type="submit" value="返信">
             					<input type="hidden" name="messageId" value="${message.id}">
             				</form>
             			</c:if>
-            			<form action="comment" method="get">
+            			<div class="comment">
             				<c:forEach items="${comments}" var="comment">
             					<c:if test="${comment.messageId == message.id}">
             						<div class="name"><c:out value="${comment.name}" /></div>
@@ -104,7 +101,7 @@
             						<div class="date"><fmt:formatDate value="${comment.createdDate}" pattern="yyyy/MM/dd HH:mm:ss" /></div>
             					</c:if>
             				</c:forEach>
-            			</form>
+            			</div>
         			</div>
         		</div>
     		</c:forEach>

@@ -85,8 +85,8 @@ public class MessageService {
 		Connection connection = null;
 		try {
 			connection = getConnection();
-			String startDate = "";
-			String endDate = "";
+			String startDate = null;
+			String endDate = null;
 			/*
 			* idをnullで初期化
 			* ServletからuserIdの値が渡ってきていたら
@@ -99,12 +99,12 @@ public class MessageService {
 			if (!StringUtils.isBlank(start)) {
 				startDate = start + " 00:00:00";
 			} else {
-				startDate = startDate + defaultStart;
+				startDate = defaultStart;
 			}
 			if (!StringUtils.isBlank(end)) {
 				endDate = end + " 23:59:59";
 			} else {
-				endDate = endDate + defaultEnd;
+				endDate = defaultEnd;
 			}
 			/*
 			* messageDao.selectに引数としてInteger型のidを追加
