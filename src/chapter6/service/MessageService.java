@@ -105,7 +105,6 @@ public class MessageService {
 				endDate = end + " 23:59:59";
 			} else {
 				endDate = endDate + defaultEnd;
-
 			}
 			/*
 			* messageDao.selectに引数としてInteger型のidを追加
