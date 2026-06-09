@@ -40,17 +40,28 @@ public class CommentDao {
 		try {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO comments ( ");
+			//【comments】データベースを参照している
 			sql.append("    text, ");
+			//返信をSQLに追加
 			sql.append("    user_id, ");
+			//ユーザIDをSQLに追加
 			sql.append("    message_id, ");
+			//つぶやきIDをSQLに追加
 			sql.append("    created_date, ");
+			//作成日をSQLに追加
 			sql.append("    updated_date ");
+			//更新日をSQLに追加
 			sql.append(") VALUES ( ");
-			sql.append("    ?, "); // user_id
 			sql.append("    ?, "); // text
+			//テキストにバインド変数を使って値を後から格納
+			sql.append("    ?, "); // user_id
+			//ユーザIDにバインド変数を使って値を後から格納
 			sql.append("    ?, "); // message_id
+			//つぶやきIDにバインド変数を使って値を後から格納
 			sql.append("    CURRENT_TIMESTAMP, "); // created_date
+			//作成日の日付と時刻を取得
 			sql.append("    CURRENT_TIMESTAMP "); // updated_date
+			//更新日の日付と時刻を取得
 			sql.append(")");
 
 			ps = connection.prepareStatement(sql.toString());

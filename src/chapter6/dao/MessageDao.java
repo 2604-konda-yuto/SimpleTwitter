@@ -43,15 +43,24 @@ public class MessageDao {
 		try {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO messages ( ");
+			//【messages】データベースに登録している
 			sql.append("    user_id, ");
+			//ユーザIDをSQLに追加
 			sql.append("    text, ");
+			//つぶやきをSQLに追加
 			sql.append("    created_date, ");
+			//作成日をSQLに追加
 			sql.append("    updated_date ");
+			//更新日をSQLに追加
 			sql.append(") VALUES ( ");
 			sql.append("    ?, "); // user_id
+			//ユーザIDをバインド変数を使って値を後から格納
 			sql.append("    ?, "); // text
+			//つぶやきをバインド変数を使って値を後から格納
 			sql.append("    CURRENT_TIMESTAMP, "); // created_date
+			//作成日の日付と時刻を取得
 			sql.append("    CURRENT_TIMESTAMP "); // updated_date
+			//更新日の日付と時刻を取得
 			sql.append(")");
 
 			ps = connection.prepareStatement(sql.toString());
@@ -79,6 +88,8 @@ public class MessageDao {
 		PreparedStatement ps = null;
 		try {
 			String sql = "DELETE FROM messages WHERE id = ?";
+			//【messages】データベースのつぶやきIDをバインド変数に格納して値を後から格納し、
+			// そのつぶやきIDと一致したつぶやきを削除する
 
 			ps = connection.prepareStatement(sql.toString());
 
@@ -104,6 +115,8 @@ public class MessageDao {
 		PreparedStatement ps = null;
 		try {
 			String sql = "SELECT * FROM messages WHERE id = ?";
+			//【messages】データベースのつぶやきIDをバインド変数に格納して値を後から格納し、
+			// そのつぶやきIDに一致したつぶやき編集画面を表示させる
 
 			ps = connection.prepareStatement(sql.toString());
 
@@ -138,6 +151,8 @@ public class MessageDao {
 		PreparedStatement ps = null;
 		try {
 			String sql = "UPDATE messages SET text = ?, created_date = CURRENT_TIMESTAMP WHERE id = ?";
+			//【messages】データベースにつぶやき、つぶやきIDをバインド変数に格納して値を後から格納し、
+			// 更新日を変更するために更新日に現在の日付と時刻を格納してつぶやき情報を更新
 
 			ps = connection.prepareStatement(sql.toString());
 
@@ -162,14 +177,20 @@ public class MessageDao {
 				}.getClass().getEnclosingMethod().getName());
 
 		List<Message> messages = new ArrayList<Message>();
+		//beansから取得したArrayList<Message>をList<Message>型のmessagesに格納し作成
 		try {
 			while (rs.next()) {
 				Message message = new Message();
 				message.setId(rs.getInt("id"));
+				//beans.Messageから取得したidをmessageに格納
 				message.setUserId(rs.getInt("user_id"));
+				//beans.Messageから取得したuser_idをmessageに格納
 				message.setText(rs.getString("text"));
+				//beans.Messageから取得したtextをmessageに格納
 				message.setCreatedDate(rs.getTimestamp("created_date"));
+				//beans.Messageから取得したcreated_dateをmessageに格納
 				message.setUpdatedDate(rs.getTimestamp("updated_date"));
+				//beans.Messageから取得したupdated_dateをmessageに格納
 
 				messages.add(message);
 			}

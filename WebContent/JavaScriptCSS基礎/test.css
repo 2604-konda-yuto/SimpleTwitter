@@ -1,0 +1,15 @@
+p{
+	text-align:center;
+}
+#first-char::first-letter {
+	color:red;
+	font-size: 24px;
+}
+#third-char::before {
+	content:"左だよ";
+	color:red;
+}
+#third-char::after {
+	content:"右だよ";
+	color:blue;
+}
