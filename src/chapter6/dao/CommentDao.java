@@ -40,7 +40,7 @@ public class CommentDao {
 		try {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO comments ( ");
-			//【comments】データベースを参照している
+			//【comments】データベースを登録している
 			sql.append("    text, ");
 			//返信をSQLに追加
 			sql.append("    user_id, ");
