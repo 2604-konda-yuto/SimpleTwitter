@@ -46,21 +46,36 @@ public class UserDao {
 		try {
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO users ( ");
+			//【users】データベースに登録している
 			sql.append("    account, ");
+			//アカウントをSQLに追加
 			sql.append("    name, ");
+			//名前をSQLに追加
 			sql.append("    email, ");
+			//メールアドレスをSQLに追加
 			sql.append("    password, ");
+			//パスワードをSQLに追加
 			sql.append("    description, ");
+			//説明をSQLに追加
 			sql.append("    created_date, ");
+			//作成日をSQLに追加
 			sql.append("    updated_date ");
+			//更新日をSQLに追加
 			sql.append(") VALUES ( ");
 			sql.append("    ?, "); // account
+			//アカウントをバインド変数を使って値を後から格納
 			sql.append("    ?, "); // name
+			//名前をバインド変数を使って値を後から格納
 			sql.append("    ?, "); // email
+			//メールアドレスをバインド変数を使って値を後から格納
 			sql.append("    ?, "); // password
+			//パスワードをバインド変数を使って値を後から格納
 			sql.append("    ?, "); // description
+			//説明をバインド変数を使って値を後から格納
 			sql.append("    CURRENT_TIMESTAMP, "); // created_date
+			//作成日の日付と時刻を取得
 			sql.append("    CURRENT_TIMESTAMP "); // updated_date
+			//更新日の日付と時刻を取得
 			sql.append(")");
 
 			ps = connection.prepareStatement(sql.toString());
@@ -91,6 +106,9 @@ public class UserDao {
 		PreparedStatement ps = null;
 		try {
 			String sql = "SELECT * FROM users WHERE (account = ? OR email = ?) AND password = ?";
+			//【users】データベースにアカウント、メールアドレスをOR文でバインド変数に格納して値を後から格納し、
+			// ANDでパスワードにバインド変数に格納して値を後から格納することで
+			//ログインユーザ情報が登録されているか参照している
 
 			ps = connection.prepareStatement(sql);
 
